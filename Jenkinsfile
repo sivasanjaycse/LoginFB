@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        SHELL = '/bin/bash'
+    }
     stages {
 
         stage('Install Backend') {
