@@ -27,7 +27,7 @@ export default function Profile() {
       try {
         const token = await auth.currentUser.getIdToken();
         const response = await axios.get(
-          "http://localhost:5000/api/user/profile",
+          "http://20.204.117.91:5000/api/user/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           },
