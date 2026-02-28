@@ -40,7 +40,7 @@ export default function Signup() {
 
   // Save to Express Backend (Supabase)
   const saveUserToDatabase = async (uid, userData) => {
-    await axios.post("http://20.204.117.91:5000/api/auth/register", {
+    await axios.post("/api/auth/register", {
       uid,
       ...userData,
     });

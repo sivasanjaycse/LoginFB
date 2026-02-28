@@ -22,9 +22,7 @@ export default function Login() {
 
       // If it's a username (doesn't contain '@'), fetch the email from Supabase
       if (!identifier.includes("@")) {
-        const response = await axios.get(
-          `http://20.204.117.91:5000/api/auth/username/${identifier}`,
-        );
+        const response = await axios.get(`/api/auth/username/${identifier}`);
         loginEmail = response.data.email;
       }
 

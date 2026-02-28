@@ -26,12 +26,9 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const token = await auth.currentUser.getIdToken();
-        const response = await axios.get(
-          "http://20.204.117.91:5000/api/user/profile",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        const response = await axios.get("/api/user/profile", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching profile", error);
