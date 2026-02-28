@@ -1,39 +1,37 @@
-# System Architecture Overview
+# System Architecture (White Theme)
 
-This document outlines the technical architecture for the application, highlighting the interaction between the React frontend, Node.js backend, and the external services for Auth and Data.
-
-## Architecture Diagram
+This diagram outlines the flow between the React frontend, Node backend, and the integration of Firebase and Supabase services.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#333333', 'lineColor': '#444444', 'secondaryColor': '#f9f9f9', 'tertiaryColor': '#ffffff'}}}%%
 graph LR
-    subgraph Frontend
-        A[Client: React]
+    subgraph Frontend [ ]
+        A[React Client]
     end
 
-    subgraph "Auth Service"
-        B[Firebase: Auth/JWT]
+    subgraph Auth [ ]
+        B[Firebase Auth]
     end
 
-    subgraph "Backend Layer"
-        C[Backend: Express/Node]
+    subgraph Backend [ ]
+        C[Express / Node.js]
     end
 
-    subgraph "Database Layer"
-        D[Supabase: PostgreSQL]
+    subgraph Database [ ]
+        D[Supabase / Postgres]
     end
 
-    %% Flow Definitions
-    A -- "1. Login / Auth Request" --> B
-    B -- "2. Returns JWT" --> A
-    A -- "3. API Request + JWT" --> C
-    C -- "4. Verify Token" --> B
-    C -- "5. Data Query" --> D
-    D -- "6. Query Result" --> C
-    C -- "7. Response" --> A
+    %% Interactions
+    A -.->|1. Authenticate| B
+    B -.->|2. JWT Token| A
+    A ==>|3. API Request + JWT| C
+    C -.->|4. Verify Token| B
+    C ==>|5. Query| D
+    D ==>|6. Data| C
+    C ==>|7. Response| A
 
-    %% Styling
-    style A fill:#61DAFB,stroke:#333,stroke-width:2px,color:#000
-    style B fill:#FFCA28,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#339933,stroke:#333,stroke-width:2px,color:#fff
-    style D fill:#3ECF8E,stroke:#333,stroke-width:2px,color:#fff
-```
+    %% White Theme Styling
+    style A fill:#ffffff,stroke:#000,stroke-width:2px
+    style B fill:#ffffff,stroke:#000,stroke-width:2px,stroke-dasharray: 5 5
+    style C fill:#ffffff,stroke:#000,stroke-width:2px
+    style D fill:#ffffff,stroke:#000,stroke-width:2px
